@@ -40,7 +40,7 @@ function EditCourse() {
       <h2>Edit Course</h2>
       <div>
         {
-            course ? (<RenderSteps />) : (<p>Course Not Found</p>)
+          course ? (<RenderSteps />) : (<p>Course Not Found</p>)
         }
       </div>
     </div>

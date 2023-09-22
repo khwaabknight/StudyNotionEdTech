@@ -66,9 +66,7 @@ const CourseInformationForm = () => {
       currentValues.courseCategory !== course.category ||
       currentValues.courseRequirements.toString() !== course.instructions.toString() ||
       currentValues.courseImage !== course.thumbnail
-      ) 
-      // return true 
-      // else return false
+      )
   }
 
   // handles next button onClick
@@ -103,14 +101,7 @@ const CourseInformationForm = () => {
         if(currentValues.courseImage !== course.thumbnail) {
           formData.append("thumbnail",data.courseImage);
         }
-        console.log('post form append', data);
-        console.log(currentValues.courseCategory)
-        console.log(course.category)
-        for (let pair of formData.entries()) {
-          console.log(pair[0]+ ', ' + pair[1]);
-        }
-
-
+        
         setLoading(true);
         const result = await editCourseDetails(formData,token);     
         if(result) {

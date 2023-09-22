@@ -33,14 +33,18 @@ const Navbar = () => {
   const location = useLocation();
 
   const [subLinks, setSubLinks] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const fetchSublinks = async () => {
+    setLoading(true)
     try {
       const result = await apiConnector("GET",COURSE_CATEGORIES_API);
       console.log("Printing Sublinks result", result);
       setSubLinks(result.data.data);
     } catch (error) {
-      console.log("Error in fetch sublinks");
+      console.log("Error in fetch sublinks",error);
     }
+    setLoading(false)
   }
   useEffect(() => {
     fetchSublinks();
