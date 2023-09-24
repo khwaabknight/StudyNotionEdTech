@@ -23,6 +23,7 @@ import { useSelector } from "react-redux";
 import MyCourses from "./components/core/Dashboard/MyCoursePage/MyCourses";
 import AddCourse from "./components/core/Dashboard/AddCourse/AddCourse";
 import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse";
+import Catalog from "./pages/Catalog";
 
 
 
@@ -34,9 +35,8 @@ function App() {
       <Routes>
 
         {/* Home path */}
-        <Route path="/" element={<OpenRoute>
-            <Home/>
-          </OpenRoute>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/catalog/:catalogName" element={<Catalog/>}/>
 
         {/* ------------------ Auth --------------- */}
         <Route path="/login" element={

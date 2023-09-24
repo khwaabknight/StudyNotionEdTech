@@ -78,11 +78,14 @@ exports.createCourse = async (req,res) => {
     try {
 
         // fetch data
-        let {courseName, courseDescription,learnings,price,category,tag,status,instructions} = req.body;
+        let {courseName, courseDescription,learnings,price,tag: _tag,category,instructions: _instructions,status} = req.body;
         // get thumbnail
         const thumbnail = req.files.thumbnail;
+        // convert tag and instructions from stringified Array to Array
+        const tag = JSON.parse(_tag);
+        const instructions = JSON.parse(_instructions);
         // validation
-        if(!courseName || !courseDescription || !learnings || !price || !category || !thumbnail || !tag){
+        if(!courseName || !courseDescription || !learnings || !price || !tag.length || !category || !thumbnail || !instructions.length){
             return res.status(400).json({
                 success:false,
                 message:"Some fields are missing in the create course form. All fields are mandatory, Please fill all fields."
@@ -109,6 +112,7 @@ exports.createCourse = async (req,res) => {
 
         // check if given category is valid or not 
         const categoryDetails = await Category.findById(category);
+
         if(!categoryDetails) {
             return res.status(404).json({
                 success:false,
@@ -143,12 +147,13 @@ exports.createCourse = async (req,res) => {
         },{new:true});
 
         // update category schema : todo 
-        await Category.findOneAndUpdate({_id:category},{
+        const newCategoryDetails = await Category.findByIdAndUpdate(category,{
             $push:{
-                course:newCourse._id,
+                courses:newCourse._id,
             }
         },{new:true});
 
+        console.log("NEW CATEGORY DETAILS" , newCategoryDetails);
 
         // return response
         return res.status(200).json({

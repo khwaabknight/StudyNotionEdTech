@@ -85,8 +85,8 @@ const CourseInformationForm = () => {
         if(currentValues.coursePrice !== course.price) {
           formData.append("price",data.coursePrice);
         }
-        if(currentValues.courseTags.toString !== course.tag.toString()) {
-          formData.append("tag",data.courseTags);
+        if(currentValues.courseTags.toString() !== course.tag.toString()) {
+          formData.append("tag",JSON.stringify(data.courseTags));
         }
         if(currentValues.courseBenefits !== course.learnings) {
           formData.append("learnings",data.courseBenefits);
@@ -120,7 +120,7 @@ const CourseInformationForm = () => {
     formData.append("courseName",data.courseTitle);
     formData.append("courseDescription",data.courseShortDesc);
     formData.append("price",data.coursePrice);
-    formData.append("tag",data.courseTags);
+    formData.append("tag",JSON.stringify(data.courseTags));
     formData.append("learnings",data.courseBenefits);
     formData.append("category",data.courseCategory);
     formData.append("thumbnail",data.courseImage);

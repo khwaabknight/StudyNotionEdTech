@@ -56,7 +56,7 @@ const Navbar = () => {
 
 
   return (
-    <div className='flex h-14 items-center justify-center border-b-[1px] border-richblack-700 bg-richblack-800'>
+    <div className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${location.pathname !== "/" ? "bg-richblack-800" : ""} transition-all duration-200`}>
       <div className='flex w-11/12 max-w-maxContent items-center justify-between'>
       {/* logo */}
         <Link to={NavbarLinks[0]?.path}>
@@ -81,7 +81,9 @@ const Navbar = () => {
                           {
                             subLinks.length > 0 ? (
                               subLinks?.map((subLink,index) => (
-                                <Link to={subLink.link} key={index}>
+                                <Link to={
+                                    `/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`
+                                  } key={index}>
                                   <p>{subLink.name}</p>
                                 </Link>
                               ))
