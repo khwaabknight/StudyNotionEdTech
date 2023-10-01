@@ -6,10 +6,14 @@ import { courseEndpoints } from '../services/apis';
 import { getCatalogPageData } from '../services/operations/pageAndComponentsData';
 import CourseCard from '../components/core/Catalog/CourseCard';
 import CourseSlider from '../components/core/Catalog/CourseSlider';
+import { useSelector } from 'react-redux';
+import Error from "./Error"
 
 const Catalog = () => {
 
+    const {loading} = useSelector((state) => state.profile)
     const {catalogName} = useParams();
+    const [active, setActive] = useState(1)
     const [catalogPageData, setCatalogPageData] = useState(null);
     const [categoryId, setCategoryId] = useState(null);
 
@@ -35,12 +39,36 @@ const Catalog = () => {
         if(categoryId != null) getCategoryDetails();
     },[categoryId]);
 
+    if (loading || !catalogPageData) {
+        return (
+          <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+            <div className="spinner"></div>
+          </div>
+        )
+    }
+
+    if (!loading && !catalogPageData.success) {
+        return <Error />
+    }
+
   return (
     <div className='text-white'>
-      <div>
-        <p>{'Home / Catalog / '} <span>{catalogPageData?.data?.selectedCategory?.name}</span></p>
-        <p>{catalogPageData?.data?.selectedCategory?.name}</p>
-        <p>{catalogPageData?.data?.selectedCategory?.description}</p>
+      {/* Hero Section */}
+      <div className=" box-content bg-richblack-800 px-4">
+        <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
+          <p className="text-sm text-richblack-300">
+            {`Home / Catalog / `}
+            <span className="text-yellow-25">
+              {catalogPageData?.data?.selectedCategory?.name}
+            </span>
+          </p>
+          <p className="text-3xl text-richblack-5">
+            {catalogPageData?.data?.selectedCategory?.name}
+          </p>
+          <p className="max-w-[870px] text-richblack-200">
+            {catalogPageData?.data?.selectedCategory?.description}
+          </p>
+        </div>
       </div>
 
       <div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {RatingStars} from '../../Common/RatingStars'
+import RatingStars from '../../Common/RatingStars'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import GetAvgRating from '../../../utils/avgRating'

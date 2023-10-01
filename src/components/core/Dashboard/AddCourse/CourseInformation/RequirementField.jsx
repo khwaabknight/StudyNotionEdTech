@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 
-const RequirementField = ({name,label,register,errors,setValue,getValues,placeholder}) => {
+const RequirementField = ({name,label,register,errors,setValue,getValues,placeholder,initialValue}) => {
 
-  const [requirementList, setRequirementList] = useState([])
+  const [requirementList, setRequirementList] = useState(initialValue)
   const [requirement, setRequirement] = useState("")
 
   useEffect(() => {

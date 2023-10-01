@@ -43,7 +43,7 @@ exports.auth = async (req,res,next) => {
 }
 
 // student
-exports.isStudent = async (req,res) => {
+exports.isStudent = async (req,res,next) => {
     try {
         if(req.user.accountType !== "Student") {
             return res.status(401).json({
@@ -55,6 +55,7 @@ exports.isStudent = async (req,res) => {
     } catch (error) {
         return res.status(500).json({
             success:false,
+            error:error.message,
             message:"User cannot be verified as a student, please try again",
         })
     }

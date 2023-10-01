@@ -2,14 +2,14 @@ import React from 'react'
 import RenderSteps from './RenderSteps'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react';
-import { setCourse, setEditCourse } from '../../../../slices/courseSlice';
+import { resetCourseState, setCourse, setEditCourse } from '../../../../slices/courseSlice';
 
 const AddCourse = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setCourse(null));
-    dispatch(setEditCourse(false));
+    dispatch(resetCourseState());
+    console.log("now in add course")
   },[]);
 
   return (

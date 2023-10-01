@@ -24,6 +24,7 @@ import MyCourses from "./components/core/Dashboard/MyCoursePage/MyCourses";
 import AddCourse from "./components/core/Dashboard/AddCourse/AddCourse";
 import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse";
 import Catalog from "./pages/Catalog";
+import CourseDetails from "./pages/CourseDetails";
 
 
 
@@ -36,6 +37,11 @@ function App() {
 
         {/* Home path */}
         <Route path="/" element={<Home/>}/>
+        {/* About us page path */}
+        <Route path="/about" element={<About/>}/>
+        {/* Contact us page path */}
+        <Route path="/contact" element={<ContactUs/>}/>
+        <Route path="courses/:courseId" element={<CourseDetails />} />
         <Route path="/catalog/:catalogName" element={<Catalog/>}/>
 
         {/* ------------------ Auth --------------- */}
@@ -64,22 +70,6 @@ function App() {
             <VerifyEmail/>
           </OpenRoute>
         }/>
-
-
-        {/* About us page path */}
-        <Route path="/about" element={
-          <OpenRoute>
-            <About/>
-          </OpenRoute>
-        }/>
-
-        {/* Contact us page path */}
-        <Route path="/contact" element={
-          <OpenRoute>
-            <ContactUs/>
-          </OpenRoute>
-        }/>
-
 
         {/* Dashboard paths */}
         <Route element={

@@ -7,7 +7,7 @@ import {addCourseDetails, editCourseDetails, fetchCourseCategories} from '../../
 import {HiOutlineCurrencyRupee} from 'react-icons/hi2'
 import RequirementField from './RequirementField'
 import IconBtn from '../../../../Common/IconBtn'
-import { setCourse, setStep } from '../../../../../slices/courseSlice';
+import { resetCourseState, setCourse, setStep } from '../../../../../slices/courseSlice';
 import { toast } from 'react-hot-toast';
 import {COURSE_STATUS} from '../../../../../utils/constants'
 import TagInput from './TagInput';
@@ -29,6 +29,12 @@ const CourseInformationForm = () => {
   const {course,editCourse} = useSelector((state) => state.course);
   const [loading, setLoading] = useState(false);
   const [courseCategories, setCourseCategories] = useState([]);
+
+  useEffect(() => {
+    if(!editCourse){
+      dispatch(resetCourseState());
+    }
+  },[course])
 
   useEffect(() => {
     const getCategories = async() => {
@@ -267,7 +273,7 @@ const CourseInformationForm = () => {
         placeholder={"Enter requirements or instructions of course"}
         setValue={setValue}
         getValues={getValues}
-        // initialValue={}
+        initialValue={course ? course.instructions : []}
       />
 
       <div className='flex justify-end items-center gap-x-5 pr-1'>
