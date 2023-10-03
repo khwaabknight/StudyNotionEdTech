@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import copy from "copy-to-clipboard"
 import { toast } from "react-hot-toast"
 import { BsFillCaretRightFill } from "react-icons/bs"
@@ -32,6 +32,12 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
     copy(window.location.href)
     toast.success("Link copied to clipboard")
   }
+
+  useEffect(() => {
+    console.log("user",user);
+    console.log("course", course);
+    console.log(course?.studentsEnrolled.includes(user?._id))
+  },[])
 
   const handleAddToCart = () => {
     if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {

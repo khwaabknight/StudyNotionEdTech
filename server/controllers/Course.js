@@ -28,8 +28,10 @@ exports.updateCourse = async (req,res) => {
             course.thumbnail = thumbnailImage.secure_url
         }
 
+        
         // Update only the fields that are present in the request body
         for (const key in updates) {
+            // console.log( "key" ,key, "->", updates[key] ,typeof updates[key])
             if (updates.hasOwnProperty(key)) {
                 if (key === "tag" || key === "instructions") {
                     course[key] = JSON.parse(updates[key])
@@ -39,7 +41,10 @@ exports.updateCourse = async (req,res) => {
             }
         }
         
+        console.log("Course update initiate");
         await course.save();
+
+        console.log("Course updated");
 
         const updatedCourse = await Course.findOne({_id: courseId,})
             .populate({
@@ -57,6 +62,7 @@ exports.updateCourse = async (req,res) => {
               },
             })
             .exec()
+            
 
         return res.status(200).json({
             success:true,

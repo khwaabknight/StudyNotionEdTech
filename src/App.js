@@ -25,6 +25,7 @@ import AddCourse from "./components/core/Dashboard/AddCourse/AddCourse";
 import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
+import Cart from "./components/core/Dashboard/Cart";
 
 
 
@@ -85,6 +86,8 @@ function App() {
                 <Route path='dashboard/enrolled-courses' element={<EnrolledCourses/>}/>
                 <Route path='dashboard/wishlist' element={<Wishlist/>}/>
                 <Route path='dashboard/purchase-history' element={<PurchaseHistory/>}/>
+                <Route path='dashboard/cart' element={<Cart/>}/>
+                
               </>
             )}
             {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (

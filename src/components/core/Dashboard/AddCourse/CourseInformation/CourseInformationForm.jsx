@@ -98,7 +98,8 @@ const CourseInformationForm = () => {
           formData.append("learnings",data.courseBenefits);
         }
         if(currentValues.courseCategory !== course.category) {
-          formData.append("category",data.courseCategory);
+          console.log("category",data.courseCategory);
+          formData.append("category",data.courseCategory._id);
         }
 
         if(currentValues.courseRequirements.toString() !== course.instructions.toString()) {

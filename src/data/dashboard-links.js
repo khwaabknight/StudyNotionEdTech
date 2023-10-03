@@ -55,11 +55,11 @@ export const sidebarLinks = [
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscRepo",
   },
-  // {
-  //   id: 9,
-  //   name: "Cart",
-  //   path: "/dashboard/cart",
-  //   type: ACCOUNT_TYPE.STUDENT,
-  //   icon: "VscArchive",
-  // },
+  {
+    id: 9,
+    name: "Cart",
+    path: "/dashboard/cart",
+    type: ACCOUNT_TYPE.STUDENT,
+    icon: "VscArchive",
+  },
 ];
