@@ -17,6 +17,7 @@ export const authEndpoints = {
 export const profileEndpoints = {
     GET_USER_DETAILS_API: BASE_PROFILE + "getUserDetails",
     GET_USER_ENROLLED_COURSES_API: BASE_PROFILE + "getEnrolledCourses",
+    GET_INSTRUCTOR_DATA_API : BASE_PROFILE + "instructorDashboard",
 }
 
 // STUDENTS ENDPOINTS

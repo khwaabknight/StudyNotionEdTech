@@ -2,6 +2,7 @@ import React from 'react'
 import ContactUsLeft from '../components/core/ContactUs/ContactUsLeft'
 import ContactUsRight from '../components/core/ContactUs/ContactUsRight'
 import Footer from '../components/Common/Footer'
+import { ReviewSlider } from '../components/Common/ReviewSlider'
 
 const ContactUs = () => {
   return (
@@ -10,6 +11,7 @@ const ContactUs = () => {
         <ContactUsLeft/>
         <ContactUsRight/>
       </div>
+      <ReviewSlider/>
       <Footer/>
     </div>
   )

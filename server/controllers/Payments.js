@@ -5,7 +5,8 @@ const User = require('../models/User');
 const mailSender = require('../utils/mailSender');
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const { paymentSuccessEmail } = require('../mail/templates/paymentSuccessEmail');
-const crypto = require("crypto")
+const crypto = require("crypto");
+const CourseProgress = require('../models/CourseProgress');
 
 
 // initiate the eazorpay order
@@ -142,10 +143,17 @@ const enrollStudent = async(courses,userId,res) => {
                 });
             }
 
+            const courseProgress = await CourseProgress.create({
+                courseID:courseId,
+                userId:userId,
+                completedVideos:[],
+            })
+
             // find the student and add the course to their list of enrolled courses
             const enrolledStudent = await User.findByIdAndUpdate(userId,
                 {$push:{
                     courses:courseId,
+                    courseProgress:courseProgress._id,
                 }},{new:true})
 
             // send mail to student
@@ -153,7 +161,7 @@ const enrollStudent = async(courses,userId,res) => {
                 enrolledStudent.email,
                 `Successfuly Enrolled into ${enrolledCourse.courseName}`,
                 courseEnrollmentEmail(enrolledCourse.courseName, `${enrolledStudent.firstName} ${enrolledStudent.lastName}`)
-            )
+            ) 
             
             console.log("Email sent successfully",emailResponse.response)
     

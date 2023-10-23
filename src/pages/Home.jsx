@@ -10,6 +10,7 @@ import TimelineSection from '../components/core/HomePage/TimelineSection';
 import LearningLanguageSection from '../components/core/HomePage/LearningLanguageSection';
 import InstructorSection from '../components/core/HomePage/InstructorSection';
 import ExploreMore from '../components/core/HomePage/ExploreMore';
+import { ReviewSlider } from '../components/Common/ReviewSlider';
 const Home = () => {
   return (
     <div className='relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white justify-between '>
@@ -170,7 +171,7 @@ const Home = () => {
         <h2 className='text-center text-4xl font-semibold mt-10'>Reviews from other learners</h2>
 
         {/* Review Slider Carousel */}
-
+        <ReviewSlider />
       </div>
 
 

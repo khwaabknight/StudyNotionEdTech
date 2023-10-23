@@ -5,7 +5,7 @@ import { setUser,setLoading } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { profileEndpoints,settingsEndpoints } from "../apis"
 
-const {GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API} = profileEndpoints;
+const {GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API,GET_INSTRUCTOR_DATA_API} = profileEndpoints;
 const {UPDATE_DISPLAY_PICTURE_API, UPDATE_PROFILE_API, CHANGE_PASSWORD_API, DELETE_PROFILE_API} = settingsEndpoints;
 
 export function updateDisplayPicture(token,formData){
@@ -168,4 +168,21 @@ export async function getUserEnrolledCourses(token) {
     }
     toast.dismiss(toastId)
     return result
+}
+
+export async function getInstructorData(token) {
+    const toastId = toast.loading("Loading...");
+    let result = [];
+    try {
+        const response = await apiConnector("GET",GET_INSTRUCTOR_DATA_API,null,{Authorization: `Bearer ${token}`,});
+
+        console.log("Get instructor dashboard api response",response);
+        result = response?.data?.courses
+        
+    } catch (error) {
+        console.log("Get instructor dashboard api error",error);
+        toast.error("Could not get Istructor Data");
+    }
+    toast.dismiss(toastId);
+    return result;
 }

@@ -14,6 +14,7 @@ const {createSection,updateSection,deleteSection,} = require("../controllers/Sec
 const {createSubSection,updateSubSection,deleteSubSection,} = require("../controllers/SubSection");
 // RatingsAndReviews.js Controllers 
 const {createRating,getAverageRating,getAllRating,} = require("../controllers/RatingsAndReviews");
+const {updateCourseProgress} = require("../controllers/courseProgress");
 
 // Importing Middlewares
 const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth");
@@ -47,6 +48,8 @@ router.post("/getFullCourseDetails",auth, getFullCourseDetails);
 router.get('/getInstructorCourses',auth,isInstructor,getInstructorCourses);
 // Delete a course
 router.delete('/deleteInstructorCourse',auth,isInstructor,deleteCourse);
+// update a course progress
+router.post('/updateCourseProgress',auth,isStudent,updateCourseProgress);
 
 
 /*             Category Routes            */

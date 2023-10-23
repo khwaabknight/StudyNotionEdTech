@@ -26,6 +26,9 @@ import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
 import Cart from "./components/core/Dashboard/Cart";
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails";
+import { InstructorDashboard } from "./components/core/Dashboard/InstructorDashboard";
 
 
 
@@ -94,11 +97,28 @@ function App() {
               <>
                 <Route path='dashboard/my-courses' element={<MyCourses/>}/>
                 <Route path='dashboard/add-course' element={<AddCourse/>}/>
+                <Route path='dashboard/instructor' element={<InstructorDashboard/>}/>
                 <Route path='dashboard/edit-course/:courseId' element={<EditCourse/>}/>
               </>
             )}
         </Route>
 
+        <Route element={
+          <PrivateRoute >
+            <ViewCourse />
+          </PrivateRoute>
+        }>
+          {
+            user?.accountType === ACCOUNT_TYPE.STUDENT && (
+              <>
+                <Route
+                  path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                  element={<VideoDetails />}
+                 />
+              </>
+            )
+          }
+        </Route>
         
         {/* Invalid Path */}
         <Route path="*" element={<Error/>}/>

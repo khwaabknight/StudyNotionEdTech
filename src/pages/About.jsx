@@ -10,6 +10,7 @@ import Quote from '../components/core/About/Quote'
 import FoundingStory from '../assets/Images/FoundingStory.png'
 import Footer from '../components/Common/Footer'
 import GradientText from '../components/core/About/GradientText'
+import { ReviewSlider } from '../components/Common/ReviewSlider';
 
 
 const About = () => {
@@ -98,6 +99,7 @@ const About = () => {
           <LearningGrid/>
           <ContactFormSection/>
         </section>
+        <ReviewSlider></ReviewSlider>
       </div>
       <Footer/>
     </div>

@@ -3,6 +3,8 @@ const Category = require("../models/Category");
 const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const { deleteImagefromCloudinary } = require("../utils/imageDelete");
+const CourseProgress = require("../models/CourseProgress");
+const { convertSecondsToDuration } = require("../utils/secToDuration");
 
 //  createCourse handler function
 exports.updateCourse = async (req,res) => {
@@ -280,12 +282,12 @@ exports.getFullCourseDetails = async (req, res) => {
         })
         .exec()
 
-        // let courseProgressCount = await CourseProgress.findOne({
-        // courseID: courseId,
-        // userId: userId,
-        // })
+        let courseProgressCount = await CourseProgress.findOne({
+        courseID: courseId,
+        userId: userId,
+        })
 
-        // console.log("courseProgressCount : ", courseProgressCount)
+        console.log("courseProgressCount : ", courseProgressCount)
 
         if (!courseDetails) {
         return res.status(400).json({
@@ -301,24 +303,24 @@ exports.getFullCourseDetails = async (req, res) => {
         //   });
         // }
 
-        // let totalDurationInSeconds = 0
-        // courseDetails.courseContent.forEach((content) => {
-        // content.subSection.forEach((subSection) => {
-        //     const timeDurationInSeconds = parseInt(subSection.timeDuration)
-        //     totalDurationInSeconds += timeDurationInSeconds
-        // })
-        // })
+        let totalDurationInSeconds = 0
+        courseDetails.courseContent.forEach((content) => {
+        content.subSection.forEach((subSection) => {
+            const timeDurationInSeconds = parseInt(subSection.timeDuration)
+            totalDurationInSeconds += timeDurationInSeconds
+        })
+        })
 
-        // const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+        const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
 
         return res.status(200).json({
         success: true,
         data: {
             courseDetails,
-            // totalDuration,
-            // completedVideos: courseProgressCount?.completedVideos
-            // ? courseProgressCount?.completedVideos
-            // : [],
+            totalDuration,
+            completedVideos: courseProgressCount?.completedVideos
+            ? courseProgressCount?.completedVideos
+            : [],
         },
         })
     } catch (error) {
