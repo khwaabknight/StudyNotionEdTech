@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetPassword } from '../services/operations/authAPI';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -32,22 +32,7 @@ const UpdatePassword = () => {
 
     const {LOWERCASE,UPPERCASE,NUMBER,SPECIALCHARACTERS} = CHARACTERS;
 
-    useEffect(() => {
-        checkStrongPassword()
-    },[password]);
-
-
-    const handleOnChange = (e) => {
-        
-        setFormData((prevData) => (
-            {
-                ...prevData,
-                [e.target.name] : e.target.value
-            }
-        ))
-    }
-
-    const checkStrongPassword = () => {
+    const checkStrongPassword = useCallback(() => {
         const strg = password;
         const arr = [false,false,false,strg.length,false]
         for(let char of strg){
@@ -63,7 +48,26 @@ const UpdatePassword = () => {
             length:arr[3],
             number:arr[4],
         })
+    },[password,LOWERCASE,UPPERCASE,NUMBER,SPECIALCHARACTERS])
+
+    useEffect(() => {
+        if(checkStrongPassword)
+            checkStrongPassword();        
+    },[password,checkStrongPassword]);
+
+
+    const handleOnChange = (e) => {
+        
+        setFormData((prevData) => (
+            {
+                ...prevData,
+                [e.target.name] : e.target.value
+            }
+        ))
     }
+
+    
+
 
     const handleOnSubmit = (e) => {
         e.preventDefault();

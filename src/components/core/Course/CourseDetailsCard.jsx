@@ -25,7 +25,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   const {
     thumbnail: ThumbnailImage,
     price: CurrentPrice,
-    _id: courseId,
+    // _id: courseId,
   } = course
 
   const handleShare = () => {
@@ -34,10 +34,8 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   }
 
   useEffect(() => {
-    console.log("user",user);
-    console.log("course", course);
     console.log(course?.studentsEnrolled.includes(user?._id))
-  },[])
+  },[course?.studentsEnrolled,user?._id])
 
   const handleAddToCart = () => {
     if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {

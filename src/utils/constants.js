@@ -12,5 +12,5 @@ export const CHARACTERS = {
     LOWERCASE: "abcdefghijklmnopqrstuvwxyz",
     UPPERCASE: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     NUMBER: "1234567890",
-    SPECIALCHARACTERS: '~`!@#$%^&*()-_+={}[]|\;:"<>,./?' + " '",
+    SPECIALCHARACTERS: '~`!@#$%^&*()-_+={}[]|;:"<>,./?\'\\'
 }

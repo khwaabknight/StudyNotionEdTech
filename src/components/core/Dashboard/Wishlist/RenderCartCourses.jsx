@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import ReactStars from "react-rating-stars-component";
 import {BsStar,BsStarFill} from 'react-icons/bs'
 import {MdOutlineDeleteForever} from 'react-icons/md'
@@ -54,7 +54,9 @@ const RenderCartCourses = () => {
             <div key={index} className='flex flex-col'>
                 {index ? <div className='h-[1px] bg-richblack-700 mb-8'/>  : ""}
                 <div className='grid grid-cols-11 gap-x-5 w-full h-fit'>
-                    <img src={course?.thumbnail} className='w-full rounded-md aspect-[4/3] col-span-3'/>
+                    <img src={course?.thumbnail} 
+                    alt=''
+                    className='w-full rounded-md aspect-[4/3] col-span-3'/>
                     <div className='flex flex-col gap-y-3 col-span-6'>
                         <p className='text-3xl font-medium text-richblack-5 h-20'>{course?.courseName}</p>
                         <p className='text-base font-normal text-richblack-300'>{course?.category?.name}</p>

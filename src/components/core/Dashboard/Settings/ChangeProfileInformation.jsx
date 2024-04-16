@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{ useState} from 'react'
 import CountryCode from '../../../../data/CountryCodes.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile } from '../../../../services/operations/profileAPI'

@@ -26,7 +26,7 @@ function EditCourse() {
             setLoading(false);
         }
         populateCourseDetails();
-    },[]);
+    },[courseId,token,dispatch]);
 
     if(loading) {
         return (

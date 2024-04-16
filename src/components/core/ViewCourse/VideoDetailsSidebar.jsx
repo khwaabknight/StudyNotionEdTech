@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { IconBase } from 'react-icons';
+// import { IconBase } from 'react-icons';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import IconBtn from '../../Common/IconBtn';
@@ -33,7 +33,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
             setVideobarActive(activeSubSectionId);
         })()
         console.log();
-    },[courseSectionData,courseEntireData, location.pathname])
+    },[courseSectionData,courseEntireData, location.pathname, sectionId, subSectionId, completedLectures])
 
   return (
     <>

@@ -34,7 +34,7 @@ export const InstructorDashboard = () => {
 
         }
         getCourseDataWithStats();
-    },[]);
+    },[token]);
 
     const totalAmount = instructorData?.reduce((acc,curr) => acc + curr.totalAmountGenerated, 0)
     const totalStudents = instructorData?.reduce((acc,curr) => acc + curr.totalStudentsEnrolled,0);
@@ -84,6 +84,7 @@ export const InstructorDashboard = () => {
                                     <div>
                                         <img 
                                             src={course?.thumbnail}
+                                            alt=''
                                         />
                                         <div>
                                             <p>{course?.courseName}</p>

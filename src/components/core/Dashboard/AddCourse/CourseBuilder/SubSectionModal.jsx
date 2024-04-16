@@ -30,7 +30,7 @@ const SubSectionModal = ({modalData,setModalData,add=false,view=false,edit=false
             setValue('lectureDesc', modalData.description);
             setValue('lectureVideo', modalData.videoUrl);
         }
-    },[]);
+    },[edit,view,modalData,setValue]);
 
     const isFormUpdated = () => {
         const currentValues = getValues();

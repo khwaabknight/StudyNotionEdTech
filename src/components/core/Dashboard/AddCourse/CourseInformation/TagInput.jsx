@@ -13,11 +13,11 @@ function TagInput({label,name,placeholder,register,errors,setValue,getValues}){
       setChips(course?.tag || [])
     }
     register(name, { required: true, validate: (value) => value.length > 0 })
-  }, [])
+  }, [course?.tag, editCourse, register, name])
 
   useEffect(() => {
     setValue(name, chips)
-  }, [chips])
+  }, [chips,name,setValue])
 
   // Function to handle user input when chips are added
   const handleKeyDown = (event) => {

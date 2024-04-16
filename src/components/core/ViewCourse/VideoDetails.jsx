@@ -39,7 +39,7 @@ const VideoDetails = () => {
     }
     setVideoSpecificDeatils();
 
-  },[courseSectionData,courseEntireData,location.pathname])
+  },[courseSectionData,courseEntireData,location.pathname,sectionId,subSectionId,completedLectures,courseId,navigate])
 
   const isFirstVideo = () => {
     const currentSectionIndex = courseSectionData.findIndex((data) => data._id === sectionId);
@@ -82,7 +82,7 @@ const VideoDetails = () => {
   }
   const gotoPrevVideo = () => {
     const currentSectionIndex = courseSectionData.findIndex((data) => data._id === sectionId);
-    const noOfSubSections = courseSectionData[currentSectionIndex].subSection.length;
+    // const noOfSubSections = courseSectionData[currentSectionIndex].subSection.length;
     const currentSubSectionIndex = courseSectionData[currentSectionIndex].subSection.findIndex(
       (data) => data._id === subSectionId
     )

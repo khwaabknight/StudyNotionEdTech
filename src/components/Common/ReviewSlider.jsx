@@ -3,20 +3,20 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
-import {Autoplay, FreeMode,Navigation,Pagination} from "swiper";
+// import {Autoplay, FreeMode,Navigation,Pagination} from "swiper";
 import ReactStars from "react-rating-stars-component";
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { useFetcher } from 'react-router-dom'
+// import { useFetcher } from 'react-router-dom'
 import { apiConnector } from '../../services/apiconnector'
 import { ratingsEndpoints } from '../../services/apis';
-import RatingStars from './RatingStars'
+// import RatingStars from './RatingStars'
 import { FaStar } from 'react-icons/fa'
 
 export const ReviewSlider = () => {
 
     const [reviews, setReviews] = useState([]);
-    const truncatewords = 15;
+    // const truncatewords = 15;
 
     useEffect(() => {
         const fetchAllReviews = async() => {
@@ -26,10 +26,9 @@ export const ReviewSlider = () => {
             if(data?.success) {
                 setReviews(data?.data);
             }
-            console.log("Printing reviews", reviews)
         }
         fetchAllReviews();
-    },[]);
+    },[setReviews]);
 
 
   return (

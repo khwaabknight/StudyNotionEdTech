@@ -11,11 +11,11 @@ const RequirementField = ({name,label,register,errors,setValue,getValues,placeho
       required:true,
       validate:(value) => value.length > 0
     })
-  },[])
+  },[name,register])
 
   useEffect(() => {
     setValue(name,requirementList);
-  },[requirementList])
+  },[requirementList,name,setValue])
 
   const handleAddRequirement = () => {
     if(requirement) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import IconBtn from '../../../../Common/IconBtn';
 import {MdAddCircleOutline} from 'react-icons/md';
@@ -15,7 +15,7 @@ const CourseBuilderForm = () => {
     register,
     handleSubmit,
     setValue,
-    getValues,
+    // getValues,
     formState:{errors},
   } = useForm();
   const [editSectionName, setEditSectionName] = useState(null);
@@ -93,6 +93,7 @@ const CourseBuilderForm = () => {
     setValue("sectionName",sectionName);
   }
 
+  if(loading) return (<div>Loading...</div>)
 
   return (
     <div className='text-richblack-5 bg-richblack-800 border border-richblack-700 rounded-md p-6 flex flex-col gap-y-7'>

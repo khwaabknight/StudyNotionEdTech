@@ -5,7 +5,11 @@ import { setUser,setLoading } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { profileEndpoints,settingsEndpoints } from "../apis"
 
-const {GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API,GET_INSTRUCTOR_DATA_API} = profileEndpoints;
+const {
+    // GET_USER_DETAILS_API,
+    GET_USER_ENROLLED_COURSES_API,
+    GET_INSTRUCTOR_DATA_API
+} = profileEndpoints;
 const {UPDATE_DISPLAY_PICTURE_API, UPDATE_PROFILE_API, CHANGE_PASSWORD_API, DELETE_PROFILE_API} = settingsEndpoints;
 
 export function updateDisplayPicture(token,formData){
@@ -30,7 +34,7 @@ export function updateDisplayPicture(token,formData){
                 dispatch(setUser(response.data.data))
             }).catch((error) => console.log(error))
 
-
+            return response
             
         } catch (error) {
             console.log("UPDATE_DISPLAY_PICTURE_API ERROR............", error)

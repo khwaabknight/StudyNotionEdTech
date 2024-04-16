@@ -2,7 +2,7 @@ import React from 'react'
 import RenderSteps from './RenderSteps'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react';
-import { resetCourseState, setCourse, setEditCourse } from '../../../../slices/courseSlice';
+import { resetCourseState} from '../../../../slices/courseSlice';
 
 const AddCourse = () => {
 
@@ -10,7 +10,7 @@ const AddCourse = () => {
   useEffect(() => {
     dispatch(resetCourseState());
     console.log("now in add course")
-  },[]);
+  },[dispatch]);
 
   return (
     <div className='w-11/12'>

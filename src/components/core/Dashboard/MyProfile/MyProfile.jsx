@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import EditButton from '../../../Common/EditButton'
 
 
 const MyProfile = () => {
 
     const {user} = useSelector((state) => state.profile)
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
 
   return (

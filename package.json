@@ -36,6 +36,7 @@
   },
   "author": "Aman Gupta",
   "scripts": {
+    "install-dev": "npm install && cd server && npm install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import ProgressBar from "@ramonak/react-progress-bar"
-import { BiDotsVerticalRounded } from "react-icons/bi"
+// import { BiDotsVerticalRounded } from "react-icons/bi"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { getUserEnrolledCourses } from "../../../../services/operations/profileAPI"
@@ -15,7 +15,6 @@ export default function EnrolledCourses() {
     ;(async () => {
       try {
         const res = await getUserEnrolledCourses(token) // Getting all the published and the drafted courses
-        console.log(res)
 
         // Filtering the published course out
         const filterPublishCourse = res.filter((ele) => ele.status !== "Draft")

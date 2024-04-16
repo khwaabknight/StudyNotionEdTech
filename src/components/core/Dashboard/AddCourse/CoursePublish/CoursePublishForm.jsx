@@ -20,7 +20,7 @@ const CoursePublishForm = () => {
     if(course?.status === COURSE_STATUS.PUBLISHED) {
       setValue("public", true);
     }
-  },[]);
+  },[course?.status,setValue]);
 
   const goBack = () => {
     dispatch(setStep(2));
@@ -32,7 +32,7 @@ const CoursePublishForm = () => {
   }
 
   const handleCoursePublish = async() => {
-    if(course?.status === COURSE_STATUS.PUBLISHED && getValues("public") === true || (course?.status === COURSE_STATUS.DRAFT && getValues("public") === false)) {
+    if((course?.status === COURSE_STATUS.PUBLISHED && getValues("public") === true) || (course?.status === COURSE_STATUS.DRAFT && getValues("public") === false)) {
       // no updation in form
       goToCourses();
       return;

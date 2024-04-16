@@ -34,7 +34,7 @@ const CourseInformationForm = () => {
     if(!editCourse){
       dispatch(resetCourseState());
     }
-  },[course])
+  },[course,dispatch,editCourse])
 
   useEffect(() => {
     const getCategories = async() => {
@@ -59,7 +59,7 @@ const CourseInformationForm = () => {
     }
 
     getCategories();
-  },[])
+  },[course,editCourse,setValue])
 
   const isFormUpdated = () => {
     const currentValues = getValues();

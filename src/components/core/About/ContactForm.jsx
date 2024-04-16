@@ -40,6 +40,11 @@ const ContactForm = () => {
             })
         }
     },[isSubmitSussessful,reset])
+
+    if(loading) {
+        return <p>Loading...</p>
+    }
+
   return (
     <form onSubmit={handleSubmit(submitContactForm)}>
       <div className='flex flex-col'>

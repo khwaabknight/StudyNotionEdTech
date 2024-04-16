@@ -57,7 +57,7 @@ const CourseReviewModal = ({setReviewModal}) => {
           <div>
             <img 
                 src={user?.image}
-                alt='user image'
+                alt=''
                 className='aspect-square w-[50px] rounded-full object-cover' 
             />
             <div>
