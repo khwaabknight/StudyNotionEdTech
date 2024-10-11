@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import copy from "copy-to-clipboard"
 import { toast } from "react-hot-toast"
 import { BsFillCaretRightFill } from "react-icons/bs"
@@ -25,17 +25,13 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   const {
     thumbnail: ThumbnailImage,
     price: CurrentPrice,
-    // _id: courseId,
+    _id: courseId,
   } = course
 
   const handleShare = () => {
     copy(window.location.href)
     toast.success("Link copied to clipboard")
   }
-
-  useEffect(() => {
-    console.log(course?.studentsEnrolled.includes(user?._id))
-  },[course?.studentsEnrolled,user?._id])
 
   const handleAddToCart = () => {
     if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
@@ -78,16 +74,16 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             <button
               className="yellowButton"
               onClick={
-                user && course?.studentsEnrolled.includes(user?._id)
+                user && course?.studentsEnroled.includes(user?._id)
                   ? () => navigate("/dashboard/enrolled-courses")
                   : handleBuyCourse
               }
             >
-              {user && course?.studentsEnrolled.includes(user?._id)
+              {user && course?.studentsEnroled.includes(user?._id)
                 ? "Go To Course"
                 : "Buy Now"}
             </button>
-            {(!user || !course?.studentsEnrolled.includes(user?._id)) && (
+            {(!user || !course?.studentsEnroled.includes(user?._id)) && (
               <button onClick={handleAddToCart} className="blackButton">
                 Add to Cart
               </button>

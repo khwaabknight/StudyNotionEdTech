@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast"
 import rzpLogo from "../../assets/Logo/rzp_logo.png"
 import { resetCart } from "../../slices/cartSlice"
 import { setPaymentLoading } from "../../slices/courseSlice"
-import { apiConnector } from "../apiconnector"
+import { apiConnector } from "../apiConnector"
 import { studentEndpoints } from "../apis"
 
 const {
@@ -39,9 +39,6 @@ export async function BuyCourse(
   try {
     // Loading the script of Razorpay SDK
     const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js")
-    // equivalent to adding -->
-    // <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    // in html code
 
     if (!res) {
       toast.error(
@@ -65,7 +62,7 @@ export async function BuyCourse(
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message)
     }
-    console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse);
+    console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse.data)
 
     // Opening the Razorpay SDK
     const options = {

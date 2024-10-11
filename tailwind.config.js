@@ -111,7 +111,6 @@ module.exports = {
       },
       "pure-greys": {
         5: "#F9F9F9",
-        10:"#EEEEEE",
         25: "#E2E2E2",
         50: "#CCCCCC",
         100: "#B5B5B5",

@@ -1,14 +1,12 @@
-import React from 'react';
+import React from "react";
 
-const HighLightText = ({text}) => {
+const HighlightText = ({text}) => {
   return (
-    <span className='font-bold bg-clip-text text-transparent bg-gradient-to-br from-[#1fa2ff] via-[#12d8fa] to-[#a6ffcb]'>
-      {" "}{text}
+    <span className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text font-bold">
+      {" "}
+      {text}
     </span>
-  )
-}
+  );
+};
 
-// background: linear-gradient(118.19deg, #1FA2FF -3.62%, #12D8FA 50.44%, #A6FFCB 104.51%),
-// linear-gradient(0deg, #F1F2FF, #F1F2FF);
-
-export default HighLightText;
+export default HighlightText;

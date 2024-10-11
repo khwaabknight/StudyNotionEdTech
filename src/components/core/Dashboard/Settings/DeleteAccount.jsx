@@ -1,54 +1,48 @@
-import React,{ useState } from 'react'
-import {MdOutlineDeleteForever} from 'react-icons/md'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
-import { deleteAccount } from '../../../../services/operations/profileAPI';
-import ConfirmationModal from '../../../Common/ConfirmationModal';
+import { FiTrash2 } from "react-icons/fi"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
-const DeleteAccount = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const [confirmationModal, setConfirmationModal] = useState(null);
-    const {token} = useSelector((state) => state.auth);
+import { deleteProfile } from "../../../../services/operations/SettingsAPI"
 
-    const deleteHandler = (event) => {
-        event.preventDefault();
-        dispatch(deleteAccount(token,navigate));
+export default function DeleteAccount() {
+  const { token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  async function handleDeleteAccount() {
+    try {
+      dispatch(deleteProfile(token, navigate))
+    } catch (error) {
+      console.log("ERROR MESSAGE - ", error.message)
     }
+  }
 
   return (
-    <div className='flex bg-pink-900 rounded border border-pink-700 p-7 gap-x-5 mb-7 w-full'>
-        <div>
-            <div className='flex justify-center items-center rounded-full w-16 aspect-square bg-pink-700'>
-                <MdOutlineDeleteForever size={40} className='text-pink-200'/>
-            </div>
+    <>
+      <div className="my-10 flex flex-row gap-x-5 rounded-md border-[1px] border-pink-700 bg-pink-900 p-8 px-12">
+        <div className="flex aspect-square h-14 w-14 items-center justify-center rounded-full bg-pink-700">
+          <FiTrash2 className="text-3xl text-pink-200" />
         </div>
-        <div className='flex flex-col gap-2'>
-            <h3 className='text-pink-5 text-xl font-bold'>Delete Account</h3>
-            <div>
-                <p className='text-pink-25 text-lg font-medium mb-1'>Would you like to delete account?</p>
-                <p className='text-pink-25 text-lg font-medium lg:w-3/4'>This account contains Paid Courses. Deleting your account will remove all the content associated with it.</p>
-            </div>
-            <div onClick={() => setConfirmationModal({
-                    text1 : "Your account will be deleted forever.",
-                    text2 : "Are you sure ? This process is not reversible.",
-                    btn1Text : "Delete",
-                    btn2Text : "Cancel",
-                    btn1Handler : deleteHandler,
-                    btn2Handler : () => setConfirmationModal(null),
-                })}
-                
-                className='text-pink-300 italic font-medium text-lg cursor-pointer' >
-                I want to delete my account.
-            </div>
+        <div className="flex flex-col space-y-2">
+          <h2 className="text-lg font-semibold text-richblack-5">
+            Delete Account
+          </h2>
+          <div className="w-3/5 text-pink-25">
+            <p>Would you like to delete account?</p>
+            <p>
+              This account may contain Paid Courses. Deleting your account is
+              permanent and will remove all the contain associated with it.
+            </p>
+          </div>
+          <button
+            type="button"
+            className="w-fit cursor-pointer italic text-pink-300"
+            onClick={handleDeleteAccount}
+          >
+            I want to delete my account.
+          </button>
         </div>
-
-        {confirmationModal && <ConfirmationModal modalData={confirmationModal}/>}
-
-        
-      
-    </div>
+      </div>
+    </>
   )
 }
-
-export default DeleteAccount
